@@ -8,7 +8,7 @@
 <style>
 :root{
   --glass: rgba(255,255,255,0.08);
-  --glassDark: rgba(0,0,0,0.68);
+  --glassDark: rgba(0,0,0,0.70);
   --border: rgba(255,255,255,0.16);
   --border2: rgba(255,255,255,0.12);
   --shadow: 0 20px 60px rgba(0,0,0,0.55);
@@ -24,27 +24,23 @@ body{
   color:#fff;
 }
 
-/* Background */
+/* BACKGROUND (FULL IMAGE, NO CROPPING) */
 .bg{
   position:fixed;
   inset:0;
-  background:
+  background-color:#000;
+  background-image:
     linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.82)),
     url("LHdesign.png");
-  background-size:cover;
-  background-position:center;
-  animation: subtleZoom 18s ease-in-out infinite alternate;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   z-index:-1;
 }
 
-@keyframes subtleZoom{
-  from{ transform: scale(1); }
-  to{ transform: scale(1.05); }
-}
-
-/* Layout (iPhone safe) */
+/* iPhone-safe layout */
 .wrap{
-  min-height: 100svh; /* iPhone Safari fix */
+  min-height:100svh;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -52,9 +48,9 @@ body{
   padding: clamp(18px, 5vw, 40px);
 }
 
-/* Coming Soon (top, not blocking logo) */
+/* COMING SOON */
 .coming{
-  margin-top: clamp(24px, 6vh, 70px);
+  margin-top: clamp(18px, 5vh, 60px);
   padding: 16px 38px;
   border-radius:999px;
   font-weight:900;
@@ -90,12 +86,13 @@ body{
   0%,100%{ transform: translateY(0); }
   50%{ transform: translateY(-5px); }
 }
+
 @keyframes shimmer{
   0%{ left:-35%; }
   100%{ left:120%; }
 }
 
-/* Bottom bar */
+/* BOTTOM BAR */
 .bottom{
   margin-bottom: clamp(16px, 4vh, 34px);
   display:flex;
@@ -121,12 +118,14 @@ body{
   cursor:pointer;
   transition: transform .15s ease, background .15s ease, opacity .15s ease;
 }
+
 .btn:hover{
   transform: translateY(-3px);
   background: rgba(255,255,255,0.10);
   opacity:0.95;
 }
 
+/* Instagram icon */
 .ig{
   width:22px;
   height:22px;
@@ -134,16 +133,17 @@ body{
   opacity:0.85;
   transition: transform .15s ease, opacity .15s ease;
 }
+
 .ig:hover{
   transform: translateY(-3px);
   opacity:1;
 }
 
-/* -------- Modal -------- */
+/* -------- MODAL -------- */
 .modal-overlay{
   position:fixed;
   inset:0;
-  background: rgba(0,0,0,0.68);
+  background: rgba(0,0,0,0.70);
   display:none;
   align-items:center;
   justify-content:center;
@@ -195,6 +195,7 @@ body{
   grid-template-columns: 1fr 1fr;
   gap:12px;
 }
+
 @media (max-width: 640px){
   .grid{ grid-template-columns: 1fr; }
 }
@@ -219,10 +220,15 @@ input, select, textarea{
   outline:none;
   font-size:14px;
 }
+
 input::placeholder, textarea::placeholder{
   color: rgba(255,255,255,0.40);
 }
-textarea{ min-height: 110px; resize: vertical; }
+
+textarea{
+  min-height: 110px;
+  resize: vertical;
+}
 
 .modal-actions{
   display:flex;
@@ -260,7 +266,7 @@ textarea{ min-height: 110px; resize: vertical; }
     <div class="bottom">
       <button class="btn" id="openModal" type="button">Get in touch</button>
 
-      <a href="https://www.instagram.com/l.hdesigns_/"
+      <a href="https://www.instagram.com/l.hdesigns_/?hl=en-gb"
          target="_blank" rel="noopener" aria-label="Instagram">
         <svg class="ig" viewBox="0 0 24 24">
           <path d="M7.75 2C4.574 2 2 4.574 2 7.75v8.5C2 19.426 4.574 22 7.75 22h8.5C19.426 22 22 19.426 22 16.25v-8.5C22 4.574 19.426 2 16.25 2h-8.5zm0 2h8.5C18.007 4 20 5.993 20 7.75v8.5c0 1.757-1.993 3.75-3.75 3.75h-8.5C5.993 20 4 18.007 4 16.25v-8.5C4 5.993 5.993 4 7.75 4zm8.25 1a1 1 0 100 2 1 1 0 000-2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/>
@@ -320,8 +326,8 @@ textarea{ min-height: 110px; resize: vertical; }
           </div>
 
           <div class="helper">
-            This sends via your email app (mailto) — perfect for a holding page.
-            If you want submissions to go straight to your inbox without opening email, say “Formspree” and I’ll wire it up.
+            This opens your email app with the message pre-filled (perfect for a holding page).
+            If you want the form to submit directly without opening email, tell me and I’ll set it up.
           </div>
         </form>
       </div>
@@ -359,7 +365,7 @@ textarea{ min-height: 110px; resize: vertical; }
     if(e.key === "Escape" && overlay.style.display === "flex") closeModal();
   });
 
-  // Change this to your real email:
+  // YOUR EMAIL
   const TO_EMAIL = "l.h.designs@icloud.com";
 
   // Submit -> opens mail app with pre-filled message
@@ -388,5 +394,6 @@ ${message}`
     form.reset();
   });
 </script>
+
 </body>
 </html>
