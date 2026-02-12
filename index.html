@@ -8,7 +8,7 @@
 <style>
 :root{
   --glass: rgba(255,255,255,0.08);
-  --glass2: rgba(0,0,0,0.65);
+  --glassDark: rgba(0,0,0,0.65);
   --border: rgba(255,255,255,0.16);
   --border2: rgba(255,255,255,0.12);
   --shadow: 0 20px 60px rgba(0,0,0,0.55);
@@ -31,7 +31,7 @@ body{
   position:fixed;
   inset:0;
   background:
-    linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.80)),
+    linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.82)),
     url("LHdesign.png");
   background-size:cover;
   background-position:center;
@@ -50,17 +50,17 @@ body{
   width:100vw;
 }
 
-/* Coming soon */
+/* COMING SOON — now at top centre */
 .coming{
   position:absolute;
   left:50%;
-  top:58%;
-  transform:translate(-50%, -50%);
-  padding:20px 48px;
+  top:90px;
+  transform:translateX(-50%);
+  padding:16px 38px;
   border-radius:999px;
   font-weight:900;
-  font-size: clamp(22px, 4vw, 42px);
-  letter-spacing:3px;
+  font-size: clamp(18px, 3vw, 30px);
+  letter-spacing:2px;
   text-transform:uppercase;
 
   border:1px solid var(--border);
@@ -83,14 +83,13 @@ body{
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
   transform: rotate(20deg);
   animation: shimmer 2.8s linear infinite;
-  opacity:0.8;
+  opacity:0.85;
 }
 
 @keyframes pulse{
-  0%,100%{ transform:translate(-50%, -50%) translateY(0); }
-  50%{ transform:translate(-50%, -50%) translateY(-6px); }
+  0%,100%{ transform:translateX(-50%) translateY(0); }
+  50%{ transform:translateX(-50%) translateY(-5px); }
 }
-
 @keyframes shimmer{
   0%{ left:-35%; }
   100%{ left:120%; }
@@ -114,7 +113,6 @@ body{
   box-shadow: var(--shadow);
 }
 
-/* Button */
 .btn{
   padding:12px 18px;
   border-radius:14px;
@@ -126,14 +124,12 @@ body{
   cursor:pointer;
   transition: transform .15s ease, background .15s ease, opacity .15s ease;
 }
-
 .btn:hover{
   transform: translateY(-3px);
   background: rgba(255,255,255,0.10);
   opacity:0.95;
 }
 
-/* Instagram icon */
 .ig{
   width:22px;
   height:22px;
@@ -141,13 +137,12 @@ body{
   opacity:0.85;
   transition: transform .15s ease, opacity .15s ease;
 }
-
 .ig:hover{
   transform: translateY(-3px);
   opacity:1;
 }
 
-/* ---------- MODAL ---------- */
+/* Modal */
 .modal-overlay{
   position:fixed;
   inset:0;
@@ -163,7 +158,7 @@ body{
   width:min(720px, 100%);
   border-radius:20px;
   border:1px solid var(--border);
-  background: var(--glass2);
+  background: var(--glassDark);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   box-shadow: 0 30px 90px rgba(0,0,0,0.75);
@@ -174,7 +169,6 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:10px;
   padding:16px 18px;
   border-bottom:1px solid rgba(255,255,255,0.10);
 }
@@ -196,16 +190,13 @@ body{
   font-weight:900;
 }
 
-.modal-body{
-  padding:18px;
-}
+.modal-body{ padding:18px; }
 
 .grid{
   display:grid;
   grid-template-columns: 1fr 1fr;
   gap:12px;
 }
-
 @media (max-width: 640px){
   .grid{ grid-template-columns: 1fr; }
 }
@@ -222,7 +213,7 @@ label{
 
 input, select, textarea{
   width:100%;
-  padding:12px 12px;
+  padding:12px;
   border-radius:14px;
   border:1px solid var(--border2);
   background: rgba(255,255,255,0.06);
@@ -230,182 +221,39 @@ input, select, textarea{
   outline:none;
   font-size:14px;
 }
-
-input::placeholder, textarea::placeholder{
-  color: rgba(255,255,255,0.40);
-}
-
-textarea{
-  min-height: 110px;
-  resize: vertical;
-}
+textarea{ min-height: 110px; resize: vertical; }
 
 .modal-actions{
   display:flex;
   justify-content:flex-end;
   gap:10px;
-  flex-wrap:wrap;
   padding-top:12px;
 }
+.btn-primary{ background: rgba(255,255,255,0.12); }
 
-.btn-primary{
-  background: rgba(255,255,255,0.12);
-}
-
-/* Mobile tweaks */
 @media (max-width:520px){
-  .coming{
-    top:60%;
-    padding:16px 26px;
-    letter-spacing:2px;
-  }
-  .bottom{
-    bottom:22px;
-    gap:12px;
-  }
+  .coming{ top:70px; }
+  .bottom{ bottom:22px; }
 }
 </style>
 </head>
 
 <body>
-  <div class="bg" aria-hidden="true"></div>
+<div class="bg"></div>
 
-  <div class="wrap">
-    <div class="coming">Coming Soon</div>
+<div class="wrap">
+  <div class="coming">Coming Soon</div>
 
-    <div class="bottom">
-      <button class="btn" id="openModal" type="button">
-        Get in touch
-      </button>
+  <div class="bottom">
+    <button class="btn" id="openModal">Get in touch</button>
 
-      <a href="https://www.instagram.com/l.hdesigns_/?hl=en-gb" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg class="ig" viewBox="0 0 24 24">
-          <path d="M7.75 2C4.574 2 2 4.574 2 7.75v8.5C2 19.426 4.574 22 7.75 22h8.5C19.426 22 22 19.426 22 16.25v-8.5C22 4.574 19.426 2 16.25 2h-8.5zm0 2h8.5C18.007 4 20 5.993 20 7.75v8.5c0 1.757-1.993 3.75-3.75 3.75h-8.5C5.993 20 4 18.007 4 16.25v-8.5C4 5.993 5.993 4 7.75 4zm8.25 1a1 1 0 100 2 1 1 0 000-2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/>
-        </svg>
-      </a>
-    </div>
+    <a href="https://www.instagram.com/l.hdesigns_/?hl=en-gb" target="_blank">
+      <svg class="ig" viewBox="0 0 24 24">
+        <path d="M7.75 2C4.574 2 2 4.574 2 7.75v8.5C2 19.426 4.574 22 7.75 22h8.5C19.426 22 22 19.426 22 16.25v-8.5C22 4.574 19.426 2 16.25 2h-8.5zm0 2h8.5C18.007 4 20 5.993 20 7.75v8.5c0 1.757-1.993 3.75-3.75 3.75h-8.5C5.993 20 4 18.007 4 16.25v-8.5C4 5.993 5.993 4 7.75 4zm8.25 1a1 1 0 100 2 1 1 0 000-2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/>
+      </svg>
+    </a>
   </div>
-
-  <!-- Modal -->
-  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true">
-    <div class="modal">
-      <div class="modal-header">
-        <h2>Get in touch</h2>
-        <button class="close" id="closeModal" aria-label="Close form">✕</button>
-      </div>
-
-      <div class="modal-body">
-        <form id="contactForm">
-          <div class="grid">
-            <div>
-              <label for="name">Name</label>
-              <input id="name" type="text" placeholder="Your name" required>
-            </div>
-
-            <div>
-              <label for="phone">Phone</label>
-              <input id="phone" type="tel" placeholder="07..." required>
-            </div>
-
-            <div>
-              <label for="email">Email</label>
-              <input id="email" type="email" placeholder="you@email.com" required>
-            </div>
-
-            <div>
-              <label for="service">Service</label>
-              <select id="service" required>
-                <option value="" selected disabled>Select a service</option>
-                <option>Brand Identity</option>
-                <option>Logo Design</option>
-                <option>Social Media Design</option>
-                <option>Print Design</option>
-                <option>Web / UI Design</option>
-                <option>Other</option>
-              </select>
-            </div>
-          </div>
-
-          <div style="margin-top:12px;">
-            <label for="message">Message</label>
-            <textarea id="message" placeholder="Tell us what you need..." required></textarea>
-          </div>
-
-          <div class="modal-actions">
-            <button class="btn" type="button" id="cancelBtn">Cancel</button>
-            <button class="btn btn-primary" type="submit">Send</button>
-          </div>
-
-          <div style="margin-top:10px; font-size:12px; color:rgba(255,255,255,0.65); line-height:1.35;">
-            This form currently opens your email app with the details pre-filled (perfect for a holding page).
-            Want it to submit directly without email? Tell me and I’ll wire it up.
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-<script>
-  // Modal controls
-  const openBtn = document.getElementById("openModal");
-  const overlay = document.getElementById("modalOverlay");
-  const closeBtn = document.getElementById("closeModal");
-  const cancelBtn = document.getElementById("cancelBtn");
-  const form = document.getElementById("contactForm");
-
-  function openModal(){
-    overlay.style.display = "flex";
-    document.body.style.overflow = "hidden";
-    setTimeout(() => document.getElementById("name").focus(), 0);
-  }
-
-  function closeModal(){
-    overlay.style.display = "none";
-    document.body.style.overflow = "";
-  }
-
-  openBtn.addEventListener("click", openModal);
-  closeBtn.addEventListener("click", closeModal);
-  cancelBtn.addEventListener("click", closeModal);
-
-  overlay.addEventListener("click", (e) => {
-    if(e.target === overlay) closeModal();
-  });
-
-  window.addEventListener("keydown", (e) => {
-    if(e.key === "Escape" && overlay.style.display === "flex") closeModal();
-  });
-
-  // Email this goes to (CHANGE THIS)
-  const TO_EMAIL = "hello@lhdesigns.co.uk";
-
-  // Submit -> opens mail app with pre-filled message
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const name = document.getElementById("name").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const service = document.getElementById("service").value;
-    const message = document.getElementById("message").value.trim();
-
-    const subject = encodeURIComponent(`LH Designs Enquiry — ${service}`);
-    const body = encodeURIComponent(
-`Name: ${name}
-Phone: ${phone}
-Email: ${email}
-Service: ${service}
-
-Message:
-${message}`
-    );
-
-    window.location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
-
-    closeModal();
-    form.reset();
-  });
-</script>
+</div>
 
 </body>
 </html>
